@@ -31,6 +31,9 @@
   html { scroll-behavior: smooth; }
   body { background-color: #0a0f1e; }
 
+  /* ===== CONTENEDOR MÁS AMPLIO ===== */
+  .container-wide { max-width: 1400px; margin-left: auto; margin-right: auto; }
+
   /* ===== PRELOADER FUTURISTA ===== */
   #preloader {
     position: fixed;
@@ -374,131 +377,6 @@
     border: 2px solid rgba(37, 211, 102, 0.3);
     animation: whatsapp-ring 2s ease-out infinite 0.5s;
   }
-
-  /* ===== PROYECTOS _proyec ===== */
-.proyectos-grid_proyec {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 1.5rem;
-}
-@media (max-width: 1024px) {
-  .proyectos-grid_proyec { grid-template-columns: repeat(2, 1fr); }
-}
-@media (max-width: 640px) {
-  .proyectos-grid_proyec { grid-template-columns: 1fr; }
-}
-
-.card-proyecto_proyec {
-  background: #0f172a;
-  border: 1px solid rgba(255,255,255,0.06);
-  border-radius: 1rem;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
-  position: relative;
-}
-.card-proyecto_proyec:hover {
-  border-color: rgba(34,211,238,0.35);
-  transform: translateY(-6px);
-  box-shadow: 0 18px 40px rgba(34,211,238,0.10);
-}
-
-.card-proyecto__img-wrap_proyec {
-  height: 12rem;
-  overflow: hidden;
-  position: relative;
-  background: #131c31;
-}
-.card-proyecto__img_proyec {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.55s ease;
-}
-.card-proyecto_proyec:hover .card-proyecto__img_proyec {
-  transform: scale(1.06);
-}
-.card-proyecto__img-fallback_proyec {
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  background: linear-gradient(135deg, #1b2740, #131c31);
-  color: rgba(34,211,238,0.55);
-  font-size: 2.5rem;
-}
-.card-proyecto__badge_proyec {
-  position: absolute;
-  top: 0.75rem;
-  left: 0.75rem;
-  background: rgba(10,15,30,0.85);
-  backdrop-filter: blur(6px);
-  color: #22d3ee;
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.65rem;
-  padding: 0.3rem 0.6rem;
-  border-radius: 0.5rem;
-  border: 1px solid rgba(34,211,238,0.25);
-  z-index: 2;
-  letter-spacing: 0.05em;
-}
-
-.card-proyecto__body_proyec {
-  padding: 1.5rem;
-  display: flex;
-  flex-direction: column;
-  flex: 1;
-}
-.card-proyecto__title_proyec {
-  font-family: 'Sora', sans-serif;
-  font-weight: 600;
-  color: #fff;
-  font-size: 1.05rem;
-  line-height: 1.3;
-}
-.card-proyecto__tags_proyec {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.75rem;
-}
-.card-proyecto__tag_proyec {
-  font-family: 'JetBrains Mono', monospace;
-  font-size: 0.68rem;
-  padding: 0.25rem 0.55rem;
-  border-radius: 0.35rem;
-  background: #1b2740;
-  color: #67e8f9;
-  white-space: nowrap;
-}
-.card-proyecto__desc_proyec {
-  margin-top: 1rem;
-  font-size: 0.83rem;
-  line-height: 1.65;
-  color: #94a3b8;
-  flex: 1;
-}
-.card-proyecto__link_proyec {
-  margin-top: 1.25rem;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  font-size: 0.83rem;
-  font-weight: 500;
-  color: #22d3ee;
-  border-radius: 0.375rem;
-  transition: color 0.2s ease;
-  align-self: flex-start;
-}
-.card-proyecto__link_proyec:hover {
-  color: #67e8f9;
-}
-.card-proyecto__link_proyec:focus-visible {
-  outline: 2px solid #22d3ee;
-  outline-offset: 3px;
-}
   @keyframes whatsapp-pulse {
     0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
     50% { box-shadow: 0 4px 34px rgba(37, 211, 102, 0.75); }
@@ -508,10 +386,164 @@
     100% { transform: scale(1.7); opacity: 0; }
   }
 
+  /* ===== PROYECTOS _proyec ===== */
+  .proyectos-grid_proyec {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1.75rem;
+  }
+  @media (max-width: 1024px) {
+    .proyectos-grid_proyec { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 640px) {
+    .proyectos-grid_proyec { grid-template-columns: 1fr; }
+  }
+
+  .card-proyecto_proyec {
+    background: #0f172a;
+    border: 1px solid rgba(255,255,255,0.06);
+    border-radius: 1rem;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+    position: relative;
+  }
+  .card-proyecto_proyec:hover {
+    border-color: rgba(34,211,238,0.35);
+    transform: translateY(-6px);
+    box-shadow: 0 18px 40px rgba(34,211,238,0.10);
+  }
+
+  .card-proyecto__img-wrap_proyec {
+    height: 20rem;
+    overflow: hidden;
+    position: relative;
+    background: #131c31;
+  }
+  .card-proyecto__img_proyec {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.55s ease;
+  }
+  .card-proyecto_proyec:hover .card-proyecto__img_proyec {
+    transform: scale(1.06);
+  }
+  .card-proyecto__img-fallback_proyec {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: linear-gradient(135deg, #1b2740, #131c31);
+    color: rgba(34,211,238,0.55);
+    font-size: 2.5rem;
+  }
+  .card-proyecto__badge_proyec {
+    position: absolute;
+    top: 0.75rem;
+    left: 0.75rem;
+    background: rgba(10,15,30,0.85);
+    backdrop-filter: blur(6px);
+    color: #22d3ee;
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.65rem;
+    padding: 0.3rem 0.6rem;
+    border-radius: 0.5rem;
+    border: 1px solid rgba(34,211,238,0.25);
+    z-index: 2;
+    letter-spacing: 0.05em;
+  }
+
+  .card-proyecto__body_proyec {
+    padding: 1.5rem;
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+  }
+  .card-proyecto__title_proyec {
+    font-family: 'Sora', sans-serif;
+    font-weight: 600;
+    color: #fff;
+    font-size: 1.05rem;
+    line-height: 1.3;
+  }
+  .card-proyecto__tags_proyec {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem;
+    margin-top: 0.75rem;
+  }
+  .card-proyecto__tag_proyec {
+    font-family: 'JetBrains Mono', monospace;
+    font-size: 0.68rem;
+    padding: 0.25rem 0.55rem;
+    border-radius: 0.35rem;
+    background: #1b2740;
+    color: #67e8f9;
+    white-space: nowrap;
+  }
+  .card-proyecto__desc_proyec {
+    margin-top: 1rem;
+    font-size: 0.83rem;
+    line-height: 1.65;
+    color: #94a3b8;
+    flex: 1;
+  }
+
+  /* ===== BOTÓN "VER PROYECTO" MÁS RESALTANTE ===== */
+  .card-proyecto__link_proyec {
+    margin-top: 1.35rem;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.55rem;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: #ffffff;
+    background: linear-gradient(100deg, #0ea5b9 0%, #2563eb 100%);
+    padding: 0.7rem 1.4rem;
+    border-radius: 0.65rem;
+    text-decoration: none;
+    align-self: flex-start;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 6px 18px rgba(14, 165, 185, 0.35);
+    transition: transform 0.25s ease, box-shadow 0.25s ease;
+    border: none;
+  }
+  .card-proyecto__link_proyec::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -75%;
+    width: 50%;
+    height: 100%;
+    background: linear-gradient(120deg, transparent, rgba(255,255,255,0.45), transparent);
+    transform: skewX(-25deg);
+    animation: shine-btn 3s ease-in-out infinite;
+  }
+  @keyframes shine-btn {
+    0% { left: -75%; }
+    50% { left: 125%; }
+    100% { left: 125%; }
+  }
+  .card-proyecto__link_proyec:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 10px 28px rgba(34, 211, 238, 0.55);
+    color: #ffffff;
+  }
+  .card-proyecto__link_proyec:focus-visible {
+    outline: 2px solid #22d3ee;
+    outline-offset: 3px;
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .float-badge, .avatar-loading-ring, .avatar-loading-ring-2,
     .animated-border-card::before, .whatsapp-float,
-    .whatsapp-float::after, .whatsapp-float::before { animation: none; }
+    .whatsapp-float::after, .whatsapp-float::before,
+    .card-proyecto__link_proyec::before { animation: none; }
     html { scroll-behavior: auto; }
   }
   .timeline-line { background: linear-gradient(180deg, #22d3ee 0%, #1b2740 100%); }
@@ -539,7 +571,7 @@
 
 <!-- ===================== NAVBAR ===================== -->
 <header class="sticky top-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
-  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+  <nav class="container-wide px-6 lg:px-10 flex items-center justify-between h-16">
     <a href="#inicio" class="font-display font-700 text-lg text-white focus-ring rounded">
       Piero<span class="text-cyan-400">.</span>Cárdenas
     </a>
@@ -568,7 +600,7 @@
 <!-- ===================== HERO ===================== -->
 <section id="inicio" class="relative bg-grid overflow-hidden">
   <div class="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/95 to-navy-950 pointer-events-none"></div>
-  <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
+  <div class="relative container-wide px-6 lg:px-10 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
 
     <div>
       <p class="font-mono text-cyan-400 text-sm mb-4">const developer = {</p>
@@ -614,7 +646,7 @@
           </div>
         </div>
 
-        <!-- 6 iconos flotantes (2 nuevos: React y Docker) -->
+        <!-- 4 iconos flotantes -->
         <div class="float-badge absolute -top-3 -left-6 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30 z-20">
           <i class="fa-brands fa-js text-yellow-400 text-lg"></i>
         </div>
@@ -634,7 +666,7 @@
 
 <!-- ===================== PROYECTOS ===================== -->
 <section id="proyectos" class="py-24 border-t border-white/5">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="container-wide px-6 lg:px-10">
     <h2 class="font-display font-700 text-3xl text-white">Proyectos</h2>
     <p class="mt-2 text-mist-400">Algunos de mis trabajos más destacados</p>
 
@@ -664,7 +696,7 @@
             producto a distintos gimnasios. Se definió una estructura de arquitectura clara
             y se trabajó con metodología Scrum para el cumplimiento de plazos.
           </p>
-          <a href="https://devioz-gym-cardenas.netlify.app/" class="card-proyecto__link_proyec">
+          <a href="https://devioz-gym-cardenas.netlify.app/" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -698,7 +730,7 @@
             submódulos críticos (logística, inventarios, facturación electrónica y control
             de accesos por rol).
           </p>
-          <a href="https://demo.grupoprevca.com/#/login" class="card-proyecto__link_proyec">
+          <a href="https://demo.grupoprevca.com/#/login" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -730,7 +762,7 @@
             asignar tareas a los practicantes según su experiencia, coordinando el equipo
             de desarrollo.
           </p>
-          <a href="https://devioz-restobar-cardenas.netlify.app/" class="card-proyecto__link_proyec">
+          <a href="https://devioz-restobar-cardenas.netlify.app/" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -761,7 +793,7 @@
             al momento de comprar, integrando pasarelas de pago y personalización con
             shortcodes.
           </p>
-          <a href="https://kuragestore.com/" class="card-proyecto__link_proyec">
+          <a href="https://kuragestore.com/" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -789,7 +821,7 @@
             verse en dos tipos de recuadros. Se respetaron plazos establecidos y se trabajó
             en equipo de programación.
           </p>
-          <a href="https://creacioness-maju-unprg.netlify.app/" class="card-proyecto__link_proyec">
+          <a href="https://creacioness-maju-unprg.netlify.app/" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -798,7 +830,7 @@
       <!-- ============ 6. NEXO ============ -->
       <article class="card-proyecto_proyec">
         <div class="card-proyecto__img-wrap_proyec">
-          <span class="card-proyecto__badge_proyec">AGENCIA</span>
+          <span class="card-proyecto__badge_proyec">WEB</span>
           <img src="img/proyectos/proyecto_Nexo.png" alt="Agencia digital NEXO"
                class="card-proyecto__img_proyec"
                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-bullhorn\'></i></div>';">
@@ -820,7 +852,7 @@
             Se establecieron plazos, se sostuvieron reuniones con el cliente y se propusieron
             mejoras continuas a la página, trabajando en equipo de programación bajo Scrum.
           </p>
-          <a href="https://agencia-nexo-cardenas.netlify.app/" class="card-proyecto__link_proyec">
+          <a href="https://agencia-nexo-cardenas.netlify.app/" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -829,7 +861,7 @@
       <!-- ============ 7. CARTA VIRTUAL ============ -->
       <article class="card-proyecto_proyec">
         <div class="card-proyecto__img-wrap_proyec">
-          <span class="card-proyecto__badge_proyec">SAAS</span>
+          <span class="card-proyecto__badge_proyec">WEB</span>
           <img src="img/proyectos/proyecto_CartaVirtual.png" alt="Carta virtual para restaurantes — Juarex Corporation"
                class="card-proyecto__img_proyec"
                onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-file-lines\'></i></div>';">
@@ -850,7 +882,7 @@
             diferentes restaurantes. Guié el desarrollo junto a mi equipo de programación,
             cumpliendo plazos y realizando análisis de requerimientos con el cliente.
           </p>
-          <a href="https://cartavirtual.shop/" class="card-proyecto__link_proyec">
+          <a href="https://cartavirtual.shop/" target="_blank" rel="noopener" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
@@ -862,7 +894,7 @@
 
 <!-- ===================== EXPERIENCIA ===================== -->
 <section id="experiencia" class="py-24 border-t border-white/5 bg-navy-900/40">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="container-wide px-6 lg:px-10">
     <h2 class="font-display font-700 text-3xl text-white">Experiencia Laboral</h2>
 
     <!-- Cards con borde animado permanente -->
@@ -872,12 +904,12 @@
         <p class="text-sm text-mist-400 mt-1">Año de experiencia</p>
       </div>
       <div class="animated-border-card bg-navy-900 rounded-xl p-6 text-center">
-        <p class="font-display font-800 text-3xl grad-text">2</p>
-        <p class="text-sm text-mist-400 mt-1">Empresas remotas</p>
+        <p class="font-display font-800 text-3xl grad-text">+2</p>
+        <p class="text-sm text-mist-400 mt-1">Empresas</p>
       </div>
       <div class="animated-border-card bg-navy-900 rounded-xl p-6 text-center">
-        <p class="font-display font-800 text-3xl grad-text">11</p>
-        <p class="text-sm text-mist-400 mt-1">Meses de intercambio en Brasil</p>
+        <p class="font-display font-800 text-3xl grad-text">+6</p>
+        <p class="text-sm text-mist-400 mt-1">Proyectos completados</p>
       </div>
     </div>
 
@@ -912,11 +944,11 @@
 
 <!-- ===================== CONOCIMIENTOS ===================== -->
 <section id="conocimientos" class="py-24 border-t border-white/5">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="container-wide px-6 lg:px-10">
     <h2 class="font-display font-700 text-3xl text-white">Conocimientos</h2>
     <p class="mt-2 text-mist-400">Tecnologías y herramientas — pasa el cursor para ver mi experiencia</p>
 
-    <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+    <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 lg:grid-cols-12 gap-4">
       <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-html5 text-2xl text-orange-400"></i>
         <span class="text-xs text-mist-400">HTML</span>
@@ -985,7 +1017,7 @@
         <i class="fa-solid fa-language text-cyan-400 text-2xl"></i> Idiomas
       </h3>
       <p class="mt-2 text-mist-400">Comunicación en distintos entornos internacionales</p>
-      <div class="mt-8 grid sm:grid-cols-2 gap-8 max-w-3xl">
+      <div class="mt-8 grid sm:grid-cols-2 gap-8 max-w-4xl">
         <!-- Inglés -->
         <div class="lang-card bg-navy-900 border border-white/5 rounded-2xl p-8 flex items-center gap-6">
           <div class="flag-icon">
@@ -1038,7 +1070,7 @@
 
 <!-- ===================== FORMACIÓN Y CERTIFICADOS ===================== -->
 <section id="formacion" class="py-24 border-t border-white/5 bg-navy-900/40">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="container-wide px-6 lg:px-10">
     <h2 class="font-display font-700 text-3xl text-white">Formación y Certificados</h2>
 
     <div class="mt-12 grid md:grid-cols-3 gap-6">
@@ -1066,7 +1098,7 @@
 
 <!-- ===================== APTITUDES ===================== -->
 <section id="aptitudes" class="py-24 border-t border-white/5">
-  <div class="max-w-6xl mx-auto px-6">
+  <div class="container-wide px-6 lg:px-10">
     <h2 class="font-display font-700 text-3xl text-white">Aptitudes</h2>
     <p class="mt-2 text-mist-400">Cómo trabajo, más allá del código — pasa el cursor para saber por qué son importantes para mí</p>
 
@@ -1109,7 +1141,7 @@
 
 <!-- ===================== CONTACTO / FOOTER ===================== -->
 <section id="contacto" class="py-24 border-t border-white/5 bg-navy-900/40">
-  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14">
+  <div class="container-wide px-6 lg:px-10 grid md:grid-cols-2 gap-14">
 
     <div>
       <h2 class="font-display font-700 text-3xl text-white">Contáctame</h2>
@@ -1154,7 +1186,7 @@
     </form>
   </div>
 
-  <div class="max-w-6xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+  <div class="container-wide px-6 lg:px-10 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-xs text-mist-500">© <span id="year"></span> Piero Cárdenas. Todos los derechos reservados.</p>
     <div class="flex items-center gap-4 text-lg">
       <a href="https://github.com/PieroCardenas2711" target="_blank" rel="noopener" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
