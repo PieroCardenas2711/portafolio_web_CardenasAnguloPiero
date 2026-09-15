@@ -374,6 +374,131 @@
     border: 2px solid rgba(37, 211, 102, 0.3);
     animation: whatsapp-ring 2s ease-out infinite 0.5s;
   }
+
+  /* ===== PROYECTOS _proyec ===== */
+.proyectos-grid_proyec {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 1.5rem;
+}
+@media (max-width: 1024px) {
+  .proyectos-grid_proyec { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 640px) {
+  .proyectos-grid_proyec { grid-template-columns: 1fr; }
+}
+
+.card-proyecto_proyec {
+  background: #0f172a;
+  border: 1px solid rgba(255,255,255,0.06);
+  border-radius: 1rem;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: border-color 0.3s ease, transform 0.3s ease, box-shadow 0.3s ease;
+  position: relative;
+}
+.card-proyecto_proyec:hover {
+  border-color: rgba(34,211,238,0.35);
+  transform: translateY(-6px);
+  box-shadow: 0 18px 40px rgba(34,211,238,0.10);
+}
+
+.card-proyecto__img-wrap_proyec {
+  height: 12rem;
+  overflow: hidden;
+  position: relative;
+  background: #131c31;
+}
+.card-proyecto__img_proyec {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.55s ease;
+}
+.card-proyecto_proyec:hover .card-proyecto__img_proyec {
+  transform: scale(1.06);
+}
+.card-proyecto__img-fallback_proyec {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1b2740, #131c31);
+  color: rgba(34,211,238,0.55);
+  font-size: 2.5rem;
+}
+.card-proyecto__badge_proyec {
+  position: absolute;
+  top: 0.75rem;
+  left: 0.75rem;
+  background: rgba(10,15,30,0.85);
+  backdrop-filter: blur(6px);
+  color: #22d3ee;
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.65rem;
+  padding: 0.3rem 0.6rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(34,211,238,0.25);
+  z-index: 2;
+  letter-spacing: 0.05em;
+}
+
+.card-proyecto__body_proyec {
+  padding: 1.5rem;
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+.card-proyecto__title_proyec {
+  font-family: 'Sora', sans-serif;
+  font-weight: 600;
+  color: #fff;
+  font-size: 1.05rem;
+  line-height: 1.3;
+}
+.card-proyecto__tags_proyec {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+  margin-top: 0.75rem;
+}
+.card-proyecto__tag_proyec {
+  font-family: 'JetBrains Mono', monospace;
+  font-size: 0.68rem;
+  padding: 0.25rem 0.55rem;
+  border-radius: 0.35rem;
+  background: #1b2740;
+  color: #67e8f9;
+  white-space: nowrap;
+}
+.card-proyecto__desc_proyec {
+  margin-top: 1rem;
+  font-size: 0.83rem;
+  line-height: 1.65;
+  color: #94a3b8;
+  flex: 1;
+}
+.card-proyecto__link_proyec {
+  margin-top: 1.25rem;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.83rem;
+  font-weight: 500;
+  color: #22d3ee;
+  border-radius: 0.375rem;
+  transition: color 0.2s ease;
+  align-self: flex-start;
+}
+.card-proyecto__link_proyec:hover {
+  color: #67e8f9;
+}
+.card-proyecto__link_proyec:focus-visible {
+  outline: 2px solid #22d3ee;
+  outline-offset: 3px;
+}
   @keyframes whatsapp-pulse {
     0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
     50% { box-shadow: 0 4px 34px rgba(37, 211, 102, 0.75); }
@@ -513,77 +638,219 @@
     <h2 class="font-display font-700 text-3xl text-white">Proyectos</h2>
     <p class="mt-2 text-mist-400">Algunos de mis trabajos más destacados</p>
 
-    <div class="mt-12 grid md:grid-cols-3 gap-6">
+    <div class="proyectos-grid_proyec mt-12">
 
-      <!-- Proyecto 1 -->
-      <article class="project-card bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-colors duration-300">
-        <div class="h-48 overflow-hidden relative bg-navy-800">
-          <img src="img/proyecto1.jpg" alt="System Sipán — ERP multi-hotel"
-               class="project-img"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-full w-full bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center\'><i class=\'fa-solid fa-hotel text-4xl text-cyan-400/60\'></i></div>';">
+      <!-- ============ 1. GYM DEVIOZ ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">GYM</span>
+          <img src="img/proyectos/proyecto_gymdevioz.png" alt="Página web para gym — Gym Devioz"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-dumbbell\'></i></div>';">
         </div>
-        <div class="p-6">
-          <h3 class="font-display font-600 text-white text-lg">System Sipán</h3>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">PHP</span>
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">MySQL</span>
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">SaaS</span>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">Gym Devioz</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">HTML</span>
+            <span class="card-proyecto__tag_proyec">CSS</span>
+            <span class="card-proyecto__tag_proyec">React</span>
+            <span class="card-proyecto__tag_proyec">JavaScript</span>
+            <span class="card-proyecto__tag_proyec">Bootstrap</span>
+            <span class="card-proyecto__tag_proyec">Jira</span>
+            <span class="card-proyecto__tag_proyec">Scrum</span>
           </div>
-          <p class="mt-4 text-sm text-mist-400 leading-relaxed">
-            ERP web multi-hotel para gestión hotelera, diseñado como modelo de negocio SaaS.
-            Incluye reservas, facturación y administración de múltiples propiedades desde un
-            único sistema, con un piloto ya validado con un cliente real.
+          <p class="card-proyecto__desc_proyec">
+            Desarrollo completo de la página web para un gym, pensada para proponerla como
+            producto a distintos gimnasios. Se definió una estructura de arquitectura clara
+            y se trabajó con metodología Scrum para el cumplimiento de plazos.
           </p>
-          <a href="#" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 focus-ring rounded">
+          <a href="https://devioz-gym-cardenas.netlify.app/" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
       </article>
 
-      <!-- Proyecto 2 -->
-      <article class="project-card bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-colors duration-300">
-        <div class="h-48 overflow-hidden relative bg-navy-800">
-          <img src="img/proyecto2.jpg" alt="Catálogo & Pedidos Web"
-               class="project-img"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-full w-full bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center\'><i class=\'fa-solid fa-cart-shopping text-4xl text-cyan-400/60\'></i></div>';">
+      <!-- ============ 2. PREVCA ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">ERP</span>
+          <img src="img/proyectos/proyecto_prevca.png" alt="ERP multi-rubro PREVCA"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-industry\'></i></div>';">
         </div>
-        <div class="p-6">
-          <h3 class="font-display font-600 text-white text-lg">Catálogo &amp; Pedidos Web</h3>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">JavaScript</span>
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">HTML/CSS</span>
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">SQL</span>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">PREVCA — ERP Multi-Rubro</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">PHP</span>
+            <span class="card-proyecto__tag_proyec">Laravel</span>
+            <span class="card-proyecto__tag_proyec">MySQL</span>
+            <span class="card-proyecto__tag_proyec">Vue.js</span>
+            <span class="card-proyecto__tag_proyec">Vuex</span>
+            <span class="card-proyecto__tag_proyec">Axios</span>
+            <span class="card-proyecto__tag_proyec">Bootstrap</span>
+            <span class="card-proyecto__tag_proyec">Jira</span>
+            <span class="card-proyecto__tag_proyec">Scrum</span>
           </div>
-          <p class="mt-4 text-sm text-mist-400 leading-relaxed">
-            Plataforma frontend para un catálogo de productos con carrito y seguimiento de pedidos,
-            construida con foco en la interacción con clientes y la entrega correcta de los
-            requisitos funcionales acordados.
+          <p class="card-proyecto__desc_proyec">
+            ERP multi-rubro para una corporación maderera con unidades de aserradero,
+            distribución, transporte, hotel y carpintería. Como Full Stack Mid Level lideré
+            el análisis de requerimientos, la arquitectura modular y el desarrollo de
+            submódulos críticos (logística, inventarios, facturación electrónica y control
+            de accesos por rol).
           </p>
-          <a href="#" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 focus-ring rounded">
+          <a href="https://demo.grupoprevca.com/#/login" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
       </article>
 
-      <!-- Proyecto 3 -->
-      <article class="project-card bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-colors duration-300">
-        <div class="h-48 overflow-hidden relative bg-navy-800">
-          <img src="img/proyecto3.jpg" alt="Toolkit de Automatización"
-               class="project-img"
-               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-full w-full bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center\'><i class=\'fa-brands fa-docker text-4xl text-cyan-400/60\'></i></div>';">
+      <!-- ============ 3. RESTOBAR ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">WEB</span>
+          <img src="img/proyectos/proyecto_restobar.png" alt="Sistema de menú para restobar"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-utensils\'></i></div>';">
         </div>
-        <div class="p-6">
-          <h3 class="font-display font-600 text-white text-lg">Toolkit de Automatización</h3>
-          <div class="flex flex-wrap gap-2 mt-3">
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">Python</span>
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">Docker</span>
-            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">MySQL</span>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">Restobar — Menú Digital</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">PHP</span>
+            <span class="card-proyecto__tag_proyec">Laravel</span>
+            <span class="card-proyecto__tag_proyec">HTML</span>
+            <span class="card-proyecto__tag_proyec">CSS</span>
+            <span class="card-proyecto__tag_proyec">JavaScript</span>
+            <span class="card-proyecto__tag_proyec">TypeScript</span>
+            <span class="card-proyecto__tag_proyec">Jira</span>
+            <span class="card-proyecto__tag_proyec">Scrum</span>
           </div>
-          <p class="mt-4 text-sm text-mist-400 leading-relaxed">
-            Conjunto de scripts en Python contenerizados con Docker para automatizar tareas
-            repetitivas de verificación de sistemas y documentación técnica de proyectos fullstack.
+          <p class="card-proyecto__desc_proyec">
+            Página web para gestionar el menú de un restobar, con estructura definida y
+            cumplimiento de plazos mediante reuniones con los encargados. Me encargué de
+            asignar tareas a los practicantes según su experiencia, coordinando el equipo
+            de desarrollo.
           </p>
-          <a href="#" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 focus-ring rounded">
+          <a href="https://devioz-restobar-cardenas.netlify.app/" class="card-proyecto__link_proyec">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- ============ 4. KURAGE STORE ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">ECOMMERCE</span>
+          <img src="img/proyectos/proyecto_KurageStore.png" alt="Tienda ecommerce Kurage Store"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-cart-shopping\'></i></div>';">
+        </div>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">Kurage Store</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">WordPress</span>
+            <span class="card-proyecto__tag_proyec">WooCommerce</span>
+            <span class="card-proyecto__tag_proyec">Shortcode</span>
+            <span class="card-proyecto__tag_proyec">Pasarelas de pago</span>
+            <span class="card-proyecto__tag_proyec">HTML</span>
+            <span class="card-proyecto__tag_proyec">CSS</span>
+            <span class="card-proyecto__tag_proyec">JavaScript</span>
+          </div>
+          <p class="card-proyecto__desc_proyec">
+            Tienda ecommerce desarrollada en equipo para una empresa del rubro de sonido.
+            Se implementaron métodos de pago, login, carrito de compras y lógica de cuotas
+            al momento de comprar, integrando pasarelas de pago y personalización con
+            shortcodes.
+          </p>
+          <a href="https://kuragestore.com/" class="card-proyecto__link_proyec">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- ============ 5. MAJU ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">WEB</span>
+          <img src="img/proyectos/proyecto_maju.png" alt="Página web Maju — talleres y manualidades marinas"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-fish\'></i></div>';">
+        </div>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">Maju — Talleres Marinos</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">HTML</span>
+            <span class="card-proyecto__tag_proyec">CSS</span>
+            <span class="card-proyecto__tag_proyec">TypeScript</span>
+            <span class="card-proyecto__tag_proyec">React</span>
+          </div>
+          <p class="card-proyecto__desc_proyec">
+            Página web para una empresa de talleres y manualidades de productos marinos.
+            Se implementó la funcionalidad para que los usuarios, al subir una foto, puedan
+            verse en dos tipos de recuadros. Se respetaron plazos establecidos y se trabajó
+            en equipo de programación.
+          </p>
+          <a href="https://creacioness-maju-unprg.netlify.app/" class="card-proyecto__link_proyec">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- ============ 6. NEXO ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">AGENCIA</span>
+          <img src="img/proyectos/proyecto_Nexo.png" alt="Agencia digital NEXO"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-bullhorn\'></i></div>';">
+        </div>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">NEXO — Agencia Digital</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">HTML</span>
+            <span class="card-proyecto__tag_proyec">CSS</span>
+            <span class="card-proyecto__tag_proyec">React</span>
+            <span class="card-proyecto__tag_proyec">TypeScript</span>
+            <span class="card-proyecto__tag_proyec">Bootstrap</span>
+            <span class="card-proyecto__tag_proyec">Figma</span>
+            <span class="card-proyecto__tag_proyec">Jira</span>
+            <span class="card-proyecto__tag_proyec">Scrum</span>
+          </div>
+          <p class="card-proyecto__desc_proyec">
+            Desarrollo de la página web de una agencia digital para potenciar su marca.
+            Se establecieron plazos, se sostuvieron reuniones con el cliente y se propusieron
+            mejoras continuas a la página, trabajando en equipo de programación bajo Scrum.
+          </p>
+          <a href="https://agencia-nexo-cardenas.netlify.app/" class="card-proyecto__link_proyec">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- ============ 7. CARTA VIRTUAL ============ -->
+      <article class="card-proyecto_proyec">
+        <div class="card-proyecto__img-wrap_proyec">
+          <span class="card-proyecto__badge_proyec">SAAS</span>
+          <img src="img/proyectos/proyecto_CartaVirtual.png" alt="Carta virtual para restaurantes — Juarex Corporation"
+               class="card-proyecto__img_proyec"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'card-proyecto__img-fallback_proyec\'><i class=\'fa-solid fa-file-lines\'></i></div>';">
+        </div>
+        <div class="card-proyecto__body_proyec">
+          <h3 class="card-proyecto__title_proyec">Carta Virtual — Juarex</h3>
+          <div class="card-proyecto__tags_proyec">
+            <span class="card-proyecto__tag_proyec">WordPress</span>
+            <span class="card-proyecto__tag_proyec">cPanel</span>
+            <span class="card-proyecto__tag_proyec">Shortcode</span>
+            <span class="card-proyecto__tag_proyec">HTML</span>
+            <span class="card-proyecto__tag_proyec">CSS</span>
+            <span class="card-proyecto__tag_proyec">JavaScript</span>
+            <span class="card-proyecto__tag_proyec">Figma</span>
+          </div>
+          <p class="card-proyecto__desc_proyec">
+            Página web de Juarex Corporation para brindar el servicio de cartas digitales a
+            diferentes restaurantes. Guié el desarrollo junto a mi equipo de programación,
+            cumpliendo plazos y realizando análisis de requerimientos con el cliente.
+          </p>
+          <a href="https://cartavirtual.shop/" class="card-proyecto__link_proyec">
             Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
           </a>
         </div>
