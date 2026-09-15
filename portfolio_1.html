@@ -30,6 +30,114 @@
 <style>
   html { scroll-behavior: smooth; }
   body { background-color: #0a0f1e; }
+
+  /* ===== PRELOADER FUTURISTA ===== */
+  #preloader {
+    position: fixed;
+    inset: 0;
+    z-index: 99999;
+    background: #0a0f1e;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+  }
+  #preloader.hidden-preloader {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+  .loader-ring {
+    width: 130px;
+    height: 130px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-top-color: #22d3ee;
+    border-right-color: #3b82f6;
+    animation: spin 1s linear infinite;
+    position: relative;
+  }
+  .loader-ring::before {
+    content: '';
+    position: absolute;
+    inset: 10px;
+    border-radius: 50%;
+    border: 3px solid transparent;
+    border-bottom-color: #22d3ee;
+    border-left-color: #a855f7;
+    animation: spin 1.5s linear infinite reverse;
+  }
+  .loader-ring::after {
+    content: '';
+    position: absolute;
+    inset: 24px;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: #a855f7;
+    animation: spin 0.8s linear infinite;
+  }
+  .loader-outer-ring {
+    position: absolute;
+    width: 180px;
+    height: 180px;
+    border-radius: 50%;
+    border: 2px dashed rgba(34, 211, 238, 0.3);
+    animation: spin 8s linear infinite;
+  }
+  .loader-text {
+    font-family: 'JetBrains Mono', monospace;
+    color: #22d3ee;
+    font-size: 1rem;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    animation: pulse-text 1.5s ease-in-out infinite;
+  }
+  .loader-bar {
+    width: 220px;
+    height: 3px;
+    background: #1b2740;
+    border-radius: 99px;
+    overflow: hidden;
+    position: relative;
+  }
+  .loader-bar-fill {
+    height: 100%;
+    width: 0%;
+    background: linear-gradient(90deg, #22d3ee, #3b82f6, #a855f7);
+    border-radius: 99px;
+    animation: load-bar 2.4s ease-in-out forwards;
+  }
+  .loader-dots span {
+    display: inline-block;
+    width: 9px;
+    height: 9px;
+    border-radius: 50%;
+    background: #22d3ee;
+    margin: 0 4px;
+    animation: bounce-dot 1.4s ease-in-out infinite;
+  }
+  .loader-dots span:nth-child(2) { animation-delay: 0.2s; background: #3b82f6; }
+  .loader-dots span:nth-child(3) { animation-delay: 0.4s; background: #a855f7; }
+
+  @keyframes spin { to { transform: rotate(360deg); } }
+  @keyframes pulse-text {
+    0%, 100% { opacity: 0.5; }
+    50% { opacity: 1; }
+  }
+  @keyframes load-bar {
+    0% { width: 0%; }
+    30% { width: 35%; }
+    60% { width: 65%; }
+    100% { width: 100%; }
+  }
+  @keyframes bounce-dot {
+    0%, 80%, 100% { transform: translateY(0); opacity: 0.4; }
+    40% { transform: translateY(-14px); opacity: 1; }
+  }
+
+  /* ===== ESTILOS BASE ===== */
   .grad-text {
     background: linear-gradient(100deg, #22d3ee 0%, #3b82f6 100%);
     -webkit-background-clip: text;
@@ -38,9 +146,6 @@
   }
   .grad-btn {
     background: linear-gradient(100deg, #0ea5b9 0%, #2563eb 100%);
-  }
-  .grad-ring {
-    background: conic-gradient(from 180deg, #22d3ee, #3b82f6, #22d3ee);
   }
   .bg-grid {
     background-image:
@@ -52,12 +157,236 @@
   .float-badge.d2 { animation-delay: 1.2s; }
   .float-badge.d3 { animation-delay: 2.4s; }
   .float-badge.d4 { animation-delay: 3.6s; }
+  .float-badge.d5 { animation-delay: 4.8s; }
+  .float-badge.d6 { animation-delay: 6.0s; }
+
   @keyframes floaty {
     0%, 100% { transform: translateY(0px); }
     50% { transform: translateY(-12px); }
   }
+
+  /* ===== EFECTO DE CARGA ALREDEDOR DE LA FOTO ===== */
+  .avatar-loading-ring {
+    position: absolute;
+    inset: -14px;
+    border-radius: 50%;
+    background: conic-gradient(from 0deg, transparent 0%, #22d3ee 25%, #3b82f6 50%, #a855f7 75%, transparent 100%);
+    animation: spin-ring 3s linear infinite;
+    mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 6px), #000 calc(100% - 5px));
+  }
+  .avatar-loading-ring-2 {
+    position: absolute;
+    inset: -26px;
+    border-radius: 50%;
+    background: conic-gradient(from 180deg, transparent 0%, #a855f7 20%, #22d3ee 40%, transparent 60%, transparent 100%);
+    animation: spin-ring 4.5s linear infinite reverse;
+    mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+    -webkit-mask: radial-gradient(farthest-side, transparent calc(100% - 4px), #000 calc(100% - 3px));
+    opacity: 0.7;
+  }
+  @keyframes spin-ring {
+    to { transform: rotate(360deg); }
+  }
+
+  /* ===== BORDE ANIMADO PARA CARDS ===== */
+  .animated-border-card {
+    position: relative;
+    background: #0f172a;
+    border-radius: 1rem;
+    overflow: hidden;
+  }
+  .animated-border-card::before {
+    content: '';
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    background: conic-gradient(from var(--angle, 0deg), #22d3ee, #3b82f6, #a855f7, #22d3ee);
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    animation: rotate-border 4s linear infinite;
+    pointer-events: none;
+  }
+  @property --angle {
+    syntax: '<angle>';
+    initial-value: 0deg;
+    inherits: false;
+  }
+  @keyframes rotate-border {
+    to { --angle: 360deg; }
+  }
+
+  /* ===== TOOLTIP DE HABILIDADES ===== */
+  .skill-card {
+    position: relative;
+    cursor: pointer;
+  }
+  .skill-card .skill-tooltip {
+    position: absolute;
+    bottom: calc(100% + 10px);
+    left: 50%;
+    transform: translateX(-50%) scale(0.85);
+    background: #1b2740;
+    border: 1px solid rgba(34, 211, 238, 0.3);
+    color: #cbd5e1;
+    font-size: 0.7rem;
+    font-family: 'JetBrains Mono', monospace;
+    padding: 7px 13px;
+    border-radius: 8px;
+    white-space: nowrap;
+    opacity: 0;
+    pointer-events: none;
+    transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+    z-index: 30;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.4);
+  }
+  .skill-card .skill-tooltip::after {
+    content: '';
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #1b2740;
+  }
+  .skill-card:hover .skill-tooltip {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
+  }
+  .skill-card:hover {
+    border-color: rgba(34, 211, 238, 0.5) !important;
+    transform: translateY(-4px);
+    box-shadow: 0 12px 32px rgba(34, 211, 238, 0.12);
+  }
+
+  /* ===== HOVER APTITUDES ===== */
+  .aptitude-card {
+    position: relative;
+    overflow: hidden;
+    cursor: pointer;
+  }
+  .aptitude-card .aptitude-overlay {
+    position: absolute;
+    inset: 0;
+    background: rgba(10, 15, 30, 0.9);
+    backdrop-filter: blur(4px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.35s ease;
+    z-index: 10;
+    border-radius: 1rem;
+  }
+  .aptitude-card:hover .aptitude-overlay {
+    opacity: 1;
+  }
+  .aptitude-card .aptitude-overlay p {
+    font-size: 0.82rem;
+    line-height: 1.65;
+    color: #cbd5e1;
+    text-align: center;
+    transform: translateY(10px);
+    transition: transform 0.35s ease;
+  }
+  .aptitude-card:hover .aptitude-overlay p {
+    transform: translateY(0);
+  }
+
+  /* ===== IMÁGENES DE PROYECTOS ===== */
+  .project-img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+  }
+  .project-card:hover .project-img {
+    transform: scale(1.05);
+  }
+
+  /* ===== CARDS DE IDIOMAS ===== */
+  .lang-card {
+    transition: all 0.3s ease;
+  }
+  .lang-card:hover {
+    transform: translateY(-6px);
+    box-shadow: 0 16px 40px rgba(34, 211, 238, 0.15);
+    border-color: rgba(34, 211, 238, 0.4) !important;
+  }
+  .flag-icon {
+    width: 64px;
+    height: 64px;
+    border-radius: 50%;
+    overflow: hidden;
+    border: 3px solid rgba(255,255,255,0.12);
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #131c31;
+  }
+  .flag-icon svg {
+    width: 100%;
+    height: 100%;
+  }
+
+  /* ===== BOTÓN FLOTANTE WHATSAPP ===== */
+  .whatsapp-float {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 9999;
+    width: 62px;
+    height: 62px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #25D366, #128C7E);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    font-size: 30px;
+    box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4);
+    animation: whatsapp-pulse 2s ease-in-out infinite;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    text-decoration: none;
+  }
+  .whatsapp-float:hover {
+    transform: scale(1.12);
+    box-shadow: 0 8px 32px rgba(37, 211, 102, 0.65);
+    color: white;
+  }
+  .whatsapp-float::after {
+    content: '';
+    position: absolute;
+    inset: -4px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.5);
+    animation: whatsapp-ring 2s ease-out infinite;
+  }
+  .whatsapp-float::before {
+    content: '';
+    position: absolute;
+    inset: -10px;
+    border-radius: 50%;
+    border: 2px solid rgba(37, 211, 102, 0.3);
+    animation: whatsapp-ring 2s ease-out infinite 0.5s;
+  }
+  @keyframes whatsapp-pulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(37, 211, 102, 0.4); }
+    50% { box-shadow: 0 4px 34px rgba(37, 211, 102, 0.75); }
+  }
+  @keyframes whatsapp-ring {
+    0% { transform: scale(0.9); opacity: 1; }
+    100% { transform: scale(1.7); opacity: 0; }
+  }
+
   @media (prefers-reduced-motion: reduce) {
-    .float-badge { animation: none; }
+    .float-badge, .avatar-loading-ring, .avatar-loading-ring-2,
+    .animated-border-card::before, .whatsapp-float,
+    .whatsapp-float::after, .whatsapp-float::before { animation: none; }
     html { scroll-behavior: auto; }
   }
   .timeline-line { background: linear-gradient(180deg, #22d3ee 0%, #1b2740 100%); }
@@ -67,6 +396,21 @@
 </style>
 </head>
 <body class="bg-navy-950 text-mist-300 font-body antialiased">
+
+<!-- ===================== PRELOADER ===================== -->
+<div id="preloader">
+  <div class="relative flex items-center justify-center">
+    <div class="loader-outer-ring"></div>
+    <div class="loader-ring"></div>
+  </div>
+  <div class="loader-text">Loading Portfolio</div>
+  <div class="loader-bar">
+    <div class="loader-bar-fill"></div>
+  </div>
+  <div class="loader-dots">
+    <span></span><span></span><span></span>
+  </div>
+</div>
 
 <!-- ===================== NAVBAR ===================== -->
 <header class="sticky top-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
@@ -121,7 +465,7 @@
            class="grad-btn text-white text-sm font-medium px-5 py-3 rounded-lg flex items-center gap-2 focus-ring">
           <i class="fa-solid fa-download"></i> Descargar CV
         </a>
-        <a href="https://github.com" target="_blank" rel="noopener"
+        <a href="https://github.com/PieroCardenas2711" target="_blank" rel="noopener"
            class="border border-white/10 hover:border-cyan-400/50 text-mist-300 text-sm font-medium px-5 py-3 rounded-lg flex items-center gap-2 focus-ring">
           <i class="fa-brands fa-github"></i> GitHub
         </a>
@@ -132,9 +476,12 @@
 
     <div class="relative flex justify-center items-center">
       <div class="relative w-64 h-64 sm:w-72 sm:h-72">
-        <div class="absolute -inset-2 rounded-full grad-ring opacity-70 blur-sm"></div>
-        <div class="relative w-full h-full rounded-full bg-navy-800 border-4 border-navy-950 overflow-hidden flex items-center justify-center">
-          <img src="/mnt/user-data/uploads/Curriculum_Vitae_CV-Cardenas_Angulo_Piero__1_.pdf#foto"
+        <!-- Anillos de carga animados -->
+        <div class="avatar-loading-ring"></div>
+        <div class="avatar-loading-ring-2"></div>
+
+        <div class="relative w-full h-full rounded-full bg-navy-800 border-4 border-navy-950 overflow-hidden flex items-center justify-center z-10">
+          <img src="img/img_piero.jpg"
                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
                class="w-full h-full object-cover" alt="Foto de perfil de Piero Cárdenas">
           <div style="display:none" class="w-full h-full items-center justify-center text-5xl text-mist-500">
@@ -142,17 +489,18 @@
           </div>
         </div>
 
-        <div class="float-badge absolute -top-3 -left-6 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+        <!-- 6 iconos flotantes (2 nuevos: React y Docker) -->
+        <div class="float-badge absolute -top-3 -left-6 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30 z-20">
           <i class="fa-brands fa-js text-yellow-400 text-lg"></i>
         </div>
-        <div class="float-badge d2 absolute top-6 -right-8 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
-          <i class="fa-brands fa-php text-indigo-300 text-lg"></i>
-        </div>
-        <div class="float-badge d3 absolute bottom-2 -left-9 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+        <div class="float-badge d3 absolute bottom-2 -left-9 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30 z-20">
           <i class="fa-solid fa-database text-cyan-400 text-lg"></i>
         </div>
-        <div class="float-badge d4 absolute -bottom-4 right-0 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+        <div class="float-badge d4 absolute -bottom-4 right-0 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30 z-20">
           <i class="fa-brands fa-python text-blue-300 text-lg"></i>
+        </div>
+        <div class="float-badge d5 absolute -top-7 right-2 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30 z-20">
+          <i class="fa-brands fa-php text-cyan-300 text-lg"></i>
         </div>
       </div>
     </div>
@@ -168,9 +516,11 @@
     <div class="mt-12 grid md:grid-cols-3 gap-6">
 
       <!-- Proyecto 1 -->
-      <article class="bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30">
-        <div class="h-40 bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
-          <i class="fa-solid fa-hotel text-4xl text-cyan-400/60"></i>
+      <article class="project-card bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-colors duration-300">
+        <div class="h-48 overflow-hidden relative bg-navy-800">
+          <img src="img/proyecto1.jpg" alt="System Sipán — ERP multi-hotel"
+               class="project-img"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-full w-full bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center\'><i class=\'fa-solid fa-hotel text-4xl text-cyan-400/60\'></i></div>';">
         </div>
         <div class="p-6">
           <h3 class="font-display font-600 text-white text-lg">System Sipán</h3>
@@ -191,9 +541,11 @@
       </article>
 
       <!-- Proyecto 2 -->
-      <article class="bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30">
-        <div class="h-40 bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
-          <i class="fa-solid fa-cart-shopping text-4xl text-cyan-400/60"></i>
+      <article class="project-card bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-colors duration-300">
+        <div class="h-48 overflow-hidden relative bg-navy-800">
+          <img src="img/proyecto2.jpg" alt="Catálogo & Pedidos Web"
+               class="project-img"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-full w-full bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center\'><i class=\'fa-solid fa-cart-shopping text-4xl text-cyan-400/60\'></i></div>';">
         </div>
         <div class="p-6">
           <h3 class="font-display font-600 text-white text-lg">Catálogo &amp; Pedidos Web</h3>
@@ -214,9 +566,11 @@
       </article>
 
       <!-- Proyecto 3 -->
-      <article class="bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30">
-        <div class="h-40 bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
-          <i class="fa-brands fa-docker text-4xl text-cyan-400/60"></i>
+      <article class="project-card bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30 transition-colors duration-300">
+        <div class="h-48 overflow-hidden relative bg-navy-800">
+          <img src="img/proyecto3.jpg" alt="Toolkit de Automatización"
+               class="project-img"
+               onerror="this.style.display='none'; this.parentElement.innerHTML='<div class=\'h-full w-full bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center\'><i class=\'fa-brands fa-docker text-4xl text-cyan-400/60\'></i></div>';">
         </div>
         <div class="p-6">
           <h3 class="font-display font-600 text-white text-lg">Toolkit de Automatización</h3>
@@ -244,16 +598,17 @@
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-display font-700 text-3xl text-white">Experiencia Laboral</h2>
 
+    <!-- Cards con borde animado permanente -->
     <div class="mt-10 grid sm:grid-cols-3 gap-4">
-      <div class="bg-navy-900 border border-white/5 rounded-xl p-6 text-center">
+      <div class="animated-border-card bg-navy-900 rounded-xl p-6 text-center">
         <p class="font-display font-800 text-3xl grad-text">+1</p>
         <p class="text-sm text-mist-400 mt-1">Año de experiencia</p>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl p-6 text-center">
+      <div class="animated-border-card bg-navy-900 rounded-xl p-6 text-center">
         <p class="font-display font-800 text-3xl grad-text">2</p>
         <p class="text-sm text-mist-400 mt-1">Empresas remotas</p>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl p-6 text-center">
+      <div class="animated-border-card bg-navy-900 rounded-xl p-6 text-center">
         <p class="font-display font-800 text-3xl grad-text">11</p>
         <p class="text-sm text-mist-400 mt-1">Meses de intercambio en Brasil</p>
       </div>
@@ -292,67 +647,124 @@
 <section id="conocimientos" class="py-24 border-t border-white/5">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-display font-700 text-3xl text-white">Conocimientos</h2>
-    <p class="mt-2 text-mist-400">Tecnologías y herramientas que domino</p>
+    <p class="mt-2 text-mist-400">Tecnologías y herramientas — pasa el cursor para ver mi experiencia</p>
 
     <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
-      <!-- skill icon card template -->
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-html5 text-2xl text-orange-400"></i>
         <span class="text-xs text-mist-400">HTML</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-css3-alt text-2xl text-blue-400"></i>
         <span class="text-xs text-mist-400">CSS</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-js text-2xl text-yellow-400"></i>
         <span class="text-xs text-mist-400">JavaScript</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-solid fa-code text-2xl text-cyan-300"></i>
         <span class="text-xs text-mist-400">TypeScript</span>
+        <div class="skill-tooltip">Básico · +6 meses</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-php text-2xl text-indigo-300"></i>
         <span class="text-xs text-mist-400">PHP</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-solid fa-database text-2xl text-cyan-400"></i>
         <span class="text-xs text-mist-400">SQL</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-python text-2xl text-blue-300"></i>
         <span class="text-xs text-mist-400">Python</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-java text-2xl text-red-400"></i>
         <span class="text-xs text-mist-400">Java</span>
+        <div class="skill-tooltip">Básico · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-wordpress text-2xl text-slate-300"></i>
         <span class="text-xs text-mist-400">WordPress</span>
+        <div class="skill-tooltip">Básico · +3 meses</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-solid fa-c text-2xl text-blue-400"></i>
         <span class="text-xs text-mist-400">C / C++</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-solid fa-server text-2xl text-cyan-300"></i>
         <span class="text-xs text-mist-400">MySQL</span>
+        <div class="skill-tooltip">Intermedio · +1 año</div>
       </div>
-      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+      <div class="skill-card bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 transition-all duration-300">
         <i class="fa-brands fa-docker text-2xl text-blue-400"></i>
         <span class="text-xs text-mist-400">Docker</span>
+        <div class="skill-tooltip">Básico · +3 meses</div>
       </div>
     </div>
 
-    <div class="mt-8 flex flex-wrap gap-3">
-      <span class="text-xs font-mono px-3 py-2 rounded-lg bg-navy-900 border border-white/5 text-mist-400">
-        <i class="fa-solid fa-globe text-cyan-400 mr-1"></i> Inglés — intermedio (CIDUNT)
-      </span>
-      <span class="text-xs font-mono px-3 py-2 rounded-lg bg-navy-900 border border-white/5 text-mist-400">
-        <i class="fa-solid fa-globe text-cyan-400 mr-1"></i> Portugués — cotidiano
-      </span>
+    <!-- ===== SECCIÓN DE IDIOMAS (MÁS GRANDE) ===== -->
+    <div class="mt-20">
+      <h3 class="font-display font-600 text-2xl text-white flex items-center gap-3">
+        <i class="fa-solid fa-language text-cyan-400 text-2xl"></i> Idiomas
+      </h3>
+      <p class="mt-2 text-mist-400">Comunicación en distintos entornos internacionales</p>
+      <div class="mt-8 grid sm:grid-cols-2 gap-8 max-w-3xl">
+        <!-- Inglés -->
+        <div class="lang-card bg-navy-900 border border-white/5 rounded-2xl p-8 flex items-center gap-6">
+          <div class="flag-icon">
+            <svg viewBox="0 0 60 60">
+              <rect width="60" height="60" fill="#012169"/>
+              <path d="M0,0 L60,60 M60,0 L0,60" stroke="#fff" stroke-width="12"/>
+              <path d="M0,0 L60,60 M60,0 L0,60" stroke="#C8102E" stroke-width="6"/>
+              <path d="M30,0 V60 M0,30 H60" stroke="#fff" stroke-width="20"/>
+              <path d="M30,0 V60 M0,30 H60" stroke="#C8102E" stroke-width="12"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-display font-700 text-white text-xl">Inglés</p>
+            <p class="text-sm text-mist-400 mt-1">Nivel intermedio — CIDUNT</p>
+            <div class="flex gap-1.5 mt-3">
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-navy-700"></span>
+              <span class="w-4 h-4 rounded-full bg-navy-700"></span>
+            </div>
+          </div>
+        </div>
+        <!-- Portugués -->
+        <div class="lang-card bg-navy-900 border border-white/5 rounded-2xl p-8 flex items-center gap-6">
+          <div class="flag-icon">
+            <svg viewBox="0 0 60 60">
+              <rect width="60" height="60" fill="#009C3B"/>
+              <polygon points="30,5 55,30 30,55 5,30" fill="#FFDF00"/>
+              <circle cx="30" cy="30" r="13" fill="#002776"/>
+              <path d="M20,28 Q30,22 40,28" stroke="#fff" stroke-width="1.5" fill="none"/>
+            </svg>
+          </div>
+          <div>
+            <p class="font-display font-700 text-white text-xl">Portugués</p>
+            <p class="text-sm text-mist-400 mt-1">Nivel cotidiano — intercambio en Brasil</p>
+            <div class="flex gap-1.5 mt-3">
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-cyan-400"></span>
+              <span class="w-4 h-4 rounded-full bg-navy-700"></span>
+            </div>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </section>
@@ -389,24 +801,40 @@
 <section id="aptitudes" class="py-24 border-t border-white/5">
   <div class="max-w-6xl mx-auto px-6">
     <h2 class="font-display font-700 text-3xl text-white">Aptitudes</h2>
-    <p class="mt-2 text-mist-400">Cómo trabajo, más allá del código</p>
+    <p class="mt-2 text-mist-400">Cómo trabajo, más allá del código — pasa el cursor para saber por qué son importantes para mí</p>
 
     <div class="mt-12 grid sm:grid-cols-2 gap-6">
-      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
-        <p class="relative font-display font-600 text-lg text-white">Trabajo en Equipo</p>
+      <!-- Aptitud 1 -->
+      <div class="aptitude-card animated-border-card rounded-2xl h-48 bg-navy-800 flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-2xl"></div>
+        <p class="relative font-display font-600 text-lg text-white z-[5]">Trabajo en Equipo</p>
+        <div class="aptitude-overlay">
+          <p>Para mí es lo más importante porque un equipo alineado multiplica resultados. He liderado equipos frontend y backend, y sé que la comunicación y la confianza mutua son la base para entregar software de calidad.</p>
+        </div>
       </div>
-      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
-        <p class="relative font-display font-600 text-lg text-white">Adaptabilidad</p>
+      <!-- Aptitud 2 -->
+      <div class="aptitude-card animated-border-card rounded-2xl h-48 bg-navy-800 flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-2xl"></div>
+        <p class="relative font-display font-600 text-lg text-white z-[5]">Adaptabilidad</p>
+        <div class="aptitude-overlay">
+          <p>Vivir 11 meses en Brasil y trabajar en entornos remotos con distintas tecnologías me enseñó a adaptarme rápido. Cada proyecto trae retos nuevos, y me gusta enfrentarlos con flexibilidad y mente abierta.</p>
+        </div>
       </div>
-      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
-        <p class="relative font-display font-600 text-lg text-white">Comunicación Efectiva</p>
+      <!-- Aptitud 3 -->
+      <div class="aptitude-card animated-border-card rounded-2xl h-48 bg-navy-800 flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-2xl"></div>
+        <p class="relative font-display font-600 text-lg text-white z-[5]">Comunicación Efectiva</p>
+        <div class="aptitude-overlay">
+          <p>He participado en reuniones con clientes para levantar requerimientos y definir alcances. Comunicar ideas técnicas de forma clara evita retrabajos y asegura que el producto final cumpla con las expectativas.</p>
+        </div>
       </div>
-      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
-        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
-        <p class="relative font-display font-600 text-lg text-white">Aprendizaje Continuo</p>
+      <!-- Aptitud 4 -->
+      <div class="aptitude-card animated-border-card rounded-2xl h-48 bg-navy-800 flex items-center justify-center">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10 rounded-2xl"></div>
+        <p class="relative font-display font-600 text-lg text-white z-[5]">Aprendizaje Continuo</p>
+        <div class="aptitude-overlay">
+          <p>La tecnología avanza rápido y me mantengo actualizado con cursos, proyectos personales y nuevas herramientas. Aprender constantemente me permite aportar soluciones modernas y eficientes a cada equipo.</p>
+        </div>
       </div>
     </div>
   </div>
@@ -462,14 +890,28 @@
   <div class="max-w-6xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
     <p class="text-xs text-mist-500">© <span id="year"></span> Piero Cárdenas. Todos los derechos reservados.</p>
     <div class="flex items-center gap-4 text-lg">
-      <a href="https://github.com" target="_blank" rel="noopener" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
-      <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="https://github.com/PieroCardenas2711" target="_blank" rel="noopener" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
       <a href="mailto:pcardenasa@unitru.edu.pe" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="Correo"><i class="fa-solid fa-envelope"></i></a>
     </div>
   </div>
 </section>
 
+<!-- ===================== BOTÓN FLOTANTE WHATSAPP ===================== -->
+<a href="https://wa.me/51932693974?text=Hola%20Piero%2C%20vi%20tu%20portafolio%20y%20me%20gustar%C3%ADa%20contactarte"
+   target="_blank" rel="noopener"
+   class="whatsapp-float"
+   aria-label="Contactar por WhatsApp">
+  <i class="fa-brands fa-whatsapp"></i>
+</a>
+
 <script>
+  // ===== PRELOADER =====
+  window.addEventListener('load', () => {
+    setTimeout(() => {
+      document.getElementById('preloader').classList.add('hidden-preloader');
+    }, 2400);
+  });
+
   // Mobile menu toggle
   const menuBtn = document.getElementById('menu-btn');
   const navMobile = document.getElementById('nav-links-mobile');
@@ -491,7 +933,7 @@
   // Footer year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // Contact form (visual only — no backend attached)
+  // Contact form (visual only)
   const form = document.getElementById('contact-form');
   const status = document.getElementById('form-status');
   form.addEventListener('submit', (e) => {
