@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="es" class="scroll-smooth">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piero Cárdenas — Fullstack Developer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@400;600;700;800&family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+<script src="https://cdn.tailwindcss.com"></script>
+<script>
+  tailwind.config = {
+    theme: {
+      extend: {
+        colors: {
+          navy: { 950: '#0a0f1e', 900: '#0f172a', 800: '#131c31', 700: '#1b2740', 600: '#243352' },
+          mist: { 300: '#cbd5e1', 400: '#94a3b8', 500: '#7c8ba3' },
+          cyan: { 400: '#22d3ee', 500: '#0ea5b9' },
+        },
+        fontFamily: {
+          display: ['Sora', 'sans-serif'],
+          body: ['Inter', 'sans-serif'],
+          mono: ['JetBrains Mono', 'monospace'],
+        },
+      }
+    }
+  }
+</script>
+<style>
+  html { scroll-behavior: smooth; }
+  body { background-color: #0a0f1e; }
+  .grad-text {
+    background: linear-gradient(100deg, #22d3ee 0%, #3b82f6 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+  }
+  .grad-btn {
+    background: linear-gradient(100deg, #0ea5b9 0%, #2563eb 100%);
+  }
+  .grad-ring {
+    background: conic-gradient(from 180deg, #22d3ee, #3b82f6, #22d3ee);
+  }
+  .bg-grid {
+    background-image:
+      linear-gradient(rgba(148,163,184,0.06) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(148,163,184,0.06) 1px, transparent 1px);
+    background-size: 42px 42px;
+  }
+  .float-badge { animation: floaty 6s ease-in-out infinite; }
+  .float-badge.d2 { animation-delay: 1.2s; }
+  .float-badge.d3 { animation-delay: 2.4s; }
+  .float-badge.d4 { animation-delay: 3.6s; }
+  @keyframes floaty {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-12px); }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .float-badge { animation: none; }
+    html { scroll-behavior: auto; }
+  }
+  .timeline-line { background: linear-gradient(180deg, #22d3ee 0%, #1b2740 100%); }
+  a, button { transition: all .2s ease; }
+  ::selection { background: #22d3ee; color: #0a0f1e; }
+  .focus-ring:focus-visible { outline: 2px solid #22d3ee; outline-offset: 3px; }
+</style>
+</head>
+<body class="bg-navy-950 text-mist-300 font-body antialiased">
+
+<!-- ===================== NAVBAR ===================== -->
+<header class="sticky top-0 z-50 bg-navy-950/80 backdrop-blur-md border-b border-white/5">
+  <nav class="max-w-6xl mx-auto px-6 flex items-center justify-between h-16">
+    <a href="#inicio" class="font-display font-700 text-lg text-white focus-ring rounded">
+      Piero<span class="text-cyan-400">.</span>Cárdenas
+    </a>
+    <button id="menu-btn" class="md:hidden text-mist-300 text-xl focus-ring rounded" aria-label="Abrir menú" aria-expanded="false">
+      <i class="fa-solid fa-bars"></i>
+    </button>
+    <ul id="nav-links" class="hidden md:flex items-center gap-8 text-sm font-medium">
+      <li><a href="#inicio" class="hover:text-cyan-400 focus-ring rounded">Inicio</a></li>
+      <li><a href="#proyectos" class="hover:text-cyan-400 focus-ring rounded">Proyectos</a></li>
+      <li><a href="#experiencia" class="hover:text-cyan-400 focus-ring rounded">Experiencia</a></li>
+      <li><a href="#conocimientos" class="hover:text-cyan-400 focus-ring rounded">Conocimientos</a></li>
+      <li><a href="#aptitudes" class="hover:text-cyan-400 focus-ring rounded">Aptitudes</a></li>
+      <li><a href="#contacto" class="grad-btn text-white px-4 py-2 rounded-lg focus-ring">Contáctame</a></li>
+    </ul>
+  </nav>
+  <ul id="nav-links-mobile" class="hidden md:hidden flex-col gap-1 px-6 pb-4 text-sm font-medium border-t border-white/5">
+    <li><a href="#inicio" class="block py-2 hover:text-cyan-400 focus-ring rounded">Inicio</a></li>
+    <li><a href="#proyectos" class="block py-2 hover:text-cyan-400 focus-ring rounded">Proyectos</a></li>
+    <li><a href="#experiencia" class="block py-2 hover:text-cyan-400 focus-ring rounded">Experiencia</a></li>
+    <li><a href="#conocimientos" class="block py-2 hover:text-cyan-400 focus-ring rounded">Conocimientos</a></li>
+    <li><a href="#aptitudes" class="block py-2 hover:text-cyan-400 focus-ring rounded">Aptitudes</a></li>
+    <li><a href="#contacto" class="block py-2 text-cyan-400 focus-ring rounded">Contáctame</a></li>
+  </ul>
+</header>
+
+<!-- ===================== HERO ===================== -->
+<section id="inicio" class="relative bg-grid overflow-hidden">
+  <div class="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/95 to-navy-950 pointer-events-none"></div>
+  <div class="relative max-w-6xl mx-auto px-6 py-20 md:py-28 grid md:grid-cols-2 gap-14 items-center">
+
+    <div>
+      <p class="font-mono text-cyan-400 text-sm mb-4">const developer = {</p>
+      <h1 class="font-display font-800 text-4xl sm:text-5xl leading-tight text-white">
+        Piero Cárdenas
+      </h1>
+      <p class="mt-3 text-xl sm:text-2xl font-display font-600 grad-text">
+        Fullstack &amp; Backend Developer
+      </p>
+      <p class="mt-6 text-mist-400 leading-relaxed max-w-md">
+        Estudiante de Ingeniería Informática de noveno ciclo en la Universidad Nacional de Trujillo,
+        con un intercambio de 11 meses en la Universidade Federal de Ouro Preto (Brasil) y más de un año
+        construyendo software fullstack. Analizo requerimientos, propongo mejoras arquitectónicas y trabajo
+        en equipos ágiles alineados con los objetivos del cliente.
+      </p>
+
+      <div class="mt-8 flex flex-wrap gap-3">
+        <a href="/mnt/user-data/uploads/Curriculum_Vitae_CV-Cardenas_Angulo_Piero__1_.pdf" download
+           class="grad-btn text-white text-sm font-medium px-5 py-3 rounded-lg flex items-center gap-2 focus-ring">
+          <i class="fa-solid fa-download"></i> Descargar CV
+        </a>
+        <a href="https://linkedin.com" target="_blank" rel="noopener"
+           class="border border-white/10 hover:border-cyan-400/50 text-mist-300 text-sm font-medium px-5 py-3 rounded-lg flex items-center gap-2 focus-ring">
+          <i class="fa-brands fa-linkedin"></i> LinkedIn
+        </a>
+        <a href="https://github.com" target="_blank" rel="noopener"
+           class="border border-white/10 hover:border-cyan-400/50 text-mist-300 text-sm font-medium px-5 py-3 rounded-lg flex items-center gap-2 focus-ring">
+          <i class="fa-brands fa-github"></i> GitHub
+        </a>
+      </div>
+
+      <p class="font-mono text-cyan-400 text-sm mt-8">};</p>
+    </div>
+
+    <div class="relative flex justify-center items-center">
+      <div class="relative w-64 h-64 sm:w-72 sm:h-72">
+        <div class="absolute -inset-2 rounded-full grad-ring opacity-70 blur-sm"></div>
+        <div class="relative w-full h-full rounded-full bg-navy-800 border-4 border-navy-950 overflow-hidden flex items-center justify-center">
+          <img src="/mnt/user-data/uploads/Curriculum_Vitae_CV-Cardenas_Angulo_Piero__1_.pdf#foto"
+               onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
+               class="w-full h-full object-cover" alt="Foto de perfil de Piero Cárdenas">
+          <div style="display:none" class="w-full h-full items-center justify-center text-5xl text-mist-500">
+            <i class="fa-solid fa-user"></i>
+          </div>
+        </div>
+
+        <div class="float-badge absolute -top-3 -left-6 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+          <i class="fa-brands fa-js text-yellow-400 text-lg"></i>
+        </div>
+        <div class="float-badge d2 absolute top-6 -right-8 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+          <i class="fa-brands fa-php text-indigo-300 text-lg"></i>
+        </div>
+        <div class="float-badge d3 absolute bottom-2 -left-9 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+          <i class="fa-solid fa-database text-cyan-400 text-lg"></i>
+        </div>
+        <div class="float-badge d4 absolute -bottom-4 right-0 w-12 h-12 rounded-xl bg-navy-800 border border-white/10 flex items-center justify-center shadow-lg shadow-black/30">
+          <i class="fa-brands fa-python text-blue-300 text-lg"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== PROYECTOS ===================== -->
+<section id="proyectos" class="py-24 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-700 text-3xl text-white">Proyectos</h2>
+    <p class="mt-2 text-mist-400">Algunos de mis trabajos más destacados</p>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+
+      <!-- Proyecto 1 -->
+      <article class="bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30">
+        <div class="h-40 bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
+          <i class="fa-solid fa-hotel text-4xl text-cyan-400/60"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-600 text-white text-lg">System Sipán</h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">PHP</span>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">MySQL</span>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">SaaS</span>
+          </div>
+          <p class="mt-4 text-sm text-mist-400 leading-relaxed">
+            ERP web multi-hotel para gestión hotelera, diseñado como modelo de negocio SaaS.
+            Incluye reservas, facturación y administración de múltiples propiedades desde un
+            único sistema, con un piloto ya validado con un cliente real.
+          </p>
+          <a href="#" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 focus-ring rounded">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- Proyecto 2 -->
+      <article class="bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30">
+        <div class="h-40 bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
+          <i class="fa-solid fa-cart-shopping text-4xl text-cyan-400/60"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-600 text-white text-lg">Catálogo &amp; Pedidos Web</h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">JavaScript</span>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">HTML/CSS</span>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">SQL</span>
+          </div>
+          <p class="mt-4 text-sm text-mist-400 leading-relaxed">
+            Plataforma frontend para un catálogo de productos con carrito y seguimiento de pedidos,
+            construida con foco en la interacción con clientes y la entrega correcta de los
+            requisitos funcionales acordados.
+          </p>
+          <a href="#" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 focus-ring rounded">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+      <!-- Proyecto 3 -->
+      <article class="bg-navy-900 border border-white/5 rounded-2xl overflow-hidden hover:border-cyan-400/30">
+        <div class="h-40 bg-gradient-to-br from-navy-700 to-navy-800 flex items-center justify-center">
+          <i class="fa-brands fa-docker text-4xl text-cyan-400/60"></i>
+        </div>
+        <div class="p-6">
+          <h3 class="font-display font-600 text-white text-lg">Toolkit de Automatización</h3>
+          <div class="flex flex-wrap gap-2 mt-3">
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">Python</span>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">Docker</span>
+            <span class="text-xs font-mono px-2 py-1 rounded bg-navy-700 text-cyan-300">MySQL</span>
+          </div>
+          <p class="mt-4 text-sm text-mist-400 leading-relaxed">
+            Conjunto de scripts en Python contenerizados con Docker para automatizar tareas
+            repetitivas de verificación de sistemas y documentación técnica de proyectos fullstack.
+          </p>
+          <a href="#" class="mt-5 inline-flex items-center gap-2 text-sm font-medium text-cyan-400 hover:text-cyan-300 focus-ring rounded">
+            Ver Proyecto <i class="fa-solid fa-arrow-up-right-from-square text-xs"></i>
+          </a>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</section>
+
+<!-- ===================== EXPERIENCIA ===================== -->
+<section id="experiencia" class="py-24 border-t border-white/5 bg-navy-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-700 text-3xl text-white">Experiencia Laboral</h2>
+
+    <div class="mt-10 grid sm:grid-cols-3 gap-4">
+      <div class="bg-navy-900 border border-white/5 rounded-xl p-6 text-center">
+        <p class="font-display font-800 text-3xl grad-text">+1</p>
+        <p class="text-sm text-mist-400 mt-1">Año de experiencia</p>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl p-6 text-center">
+        <p class="font-display font-800 text-3xl grad-text">2</p>
+        <p class="text-sm text-mist-400 mt-1">Empresas remotas</p>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl p-6 text-center">
+        <p class="font-display font-800 text-3xl grad-text">11</p>
+        <p class="text-sm text-mist-400 mt-1">Meses de intercambio en Brasil</p>
+      </div>
+    </div>
+
+    <div class="mt-16 relative pl-10">
+      <div class="absolute left-[7px] top-2 bottom-2 w-px timeline-line"></div>
+
+      <div class="relative mb-12">
+        <span class="absolute -left-10 top-1.5 w-3.5 h-3.5 rounded-full bg-cyan-400 ring-4 ring-navy-950"></span>
+        <p class="font-mono text-xs text-cyan-400">May. 2025 — Ene. 2026 · Lima, Perú (Remoto)</p>
+        <h3 class="font-display font-600 text-white text-lg mt-1">Fullstack Developer — Juarex Technology Group</h3>
+        <ul class="mt-3 space-y-2 text-sm text-mist-400">
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Organización y liderazgo de equipos frontend y backend para la entrega oportuna de los requerimientos.</li>
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Participación en reuniones con clientes para el levantamiento de requerimientos y definición de alcance del software.</li>
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Documentación técnica detallada y verificación de sistemas existentes.</li>
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Identificación de errores y propuesta de mejoras arquitectónicas, optimizando el rendimiento general.</li>
+        </ul>
+      </div>
+
+      <div class="relative">
+        <span class="absolute -left-10 top-1.5 w-3.5 h-3.5 rounded-full bg-navy-600 ring-4 ring-navy-950"></span>
+        <p class="font-mono text-xs text-cyan-400">Feb. 2025 — May. 2025 · Lima, Perú (Remoto)</p>
+        <h3 class="font-display font-600 text-white text-lg mt-1">Frontend Developer — Devioz</h3>
+        <ul class="mt-3 space-y-2 text-sm text-mist-400">
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Desarrollo de diversos proyectos web, manteniendo comunicación constante y efectiva con el equipo de trabajo y la jefatura.</li>
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Interacción con clientes para garantizar la correcta entrega de requisitos funcionales.</li>
+          <li class="flex gap-2"><i class="fa-solid fa-caret-right text-cyan-400 mt-1"></i>Participación integral en el ciclo de vida de los proyectos, desde la planificación inicial hasta la culminación del mismo.</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONOCIMIENTOS ===================== -->
+<section id="conocimientos" class="py-24 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-700 text-3xl text-white">Conocimientos</h2>
+    <p class="mt-2 text-mist-400">Tecnologías y herramientas que domino</p>
+
+    <div class="mt-12 grid grid-cols-3 sm:grid-cols-4 md:grid-cols-6 gap-4">
+      <!-- skill icon card template -->
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-html5 text-2xl text-orange-400"></i>
+        <span class="text-xs text-mist-400">HTML</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-css3-alt text-2xl text-blue-400"></i>
+        <span class="text-xs text-mist-400">CSS</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-js text-2xl text-yellow-400"></i>
+        <span class="text-xs text-mist-400">JavaScript</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-solid fa-code text-2xl text-cyan-300"></i>
+        <span class="text-xs text-mist-400">TypeScript</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-php text-2xl text-indigo-300"></i>
+        <span class="text-xs text-mist-400">PHP</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-solid fa-database text-2xl text-cyan-400"></i>
+        <span class="text-xs text-mist-400">SQL</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-python text-2xl text-blue-300"></i>
+        <span class="text-xs text-mist-400">Python</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-java text-2xl text-red-400"></i>
+        <span class="text-xs text-mist-400">Java</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-wordpress text-2xl text-slate-300"></i>
+        <span class="text-xs text-mist-400">WordPress</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-solid fa-c text-2xl text-blue-400"></i>
+        <span class="text-xs text-mist-400">C / C++</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-solid fa-server text-2xl text-cyan-300"></i>
+        <span class="text-xs text-mist-400">MySQL</span>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-xl aspect-square flex flex-col items-center justify-center gap-2 hover:border-cyan-400/30">
+        <i class="fa-brands fa-docker text-2xl text-blue-400"></i>
+        <span class="text-xs text-mist-400">Docker</span>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-wrap gap-3">
+      <span class="text-xs font-mono px-3 py-2 rounded-lg bg-navy-900 border border-white/5 text-mist-400">
+        <i class="fa-solid fa-globe text-cyan-400 mr-1"></i> Inglés — intermedio (CIDUNT)
+      </span>
+      <span class="text-xs font-mono px-3 py-2 rounded-lg bg-navy-900 border border-white/5 text-mist-400">
+        <i class="fa-solid fa-globe text-cyan-400 mr-1"></i> Portugués — cotidiano
+      </span>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FORMACIÓN Y CERTIFICADOS ===================== -->
+<section id="formacion" class="py-24 border-t border-white/5 bg-navy-900/40">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-700 text-3xl text-white">Formación y Certificados</h2>
+
+    <div class="mt-12 grid md:grid-cols-3 gap-6">
+      <div class="bg-navy-900 border border-white/5 rounded-2xl p-6">
+        <i class="fa-solid fa-graduation-cap text-2xl text-cyan-400"></i>
+        <h3 class="font-display font-600 text-white mt-4">Ingeniería Informática</h3>
+        <p class="text-sm text-mist-400 mt-1">Universidad Nacional de Trujillo, Perú</p>
+        <p class="text-xs font-mono text-mist-500 mt-3">2022 — 2026</p>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-2xl p-6">
+        <i class="fa-solid fa-earth-americas text-2xl text-cyan-400"></i>
+        <h3 class="font-display font-600 text-white mt-4">Ciencias de la Computación</h3>
+        <p class="text-sm text-mist-400 mt-1">Universidade Federal de Ouro Preto, Brasil — Intercambio académico</p>
+        <p class="text-xs font-mono text-mist-500 mt-3">Abr. 2025 — Mar. 2026</p>
+      </div>
+      <div class="bg-navy-900 border border-white/5 rounded-2xl p-6">
+        <i class="fa-solid fa-certificate text-2xl text-cyan-400"></i>
+        <h3 class="font-display font-600 text-white mt-4">Certificación de Inglés</h3>
+        <p class="text-sm text-mist-400 mt-1">CIDUNT — Trujillo, nivel intermedio</p>
+        <p class="text-xs font-mono text-mist-500 mt-3">Perú</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== APTITUDES ===================== -->
+<section id="aptitudes" class="py-24 border-t border-white/5">
+  <div class="max-w-6xl mx-auto px-6">
+    <h2 class="font-display font-700 text-3xl text-white">Aptitudes</h2>
+    <p class="mt-2 text-mist-400">Cómo trabajo, más allá del código</p>
+
+    <div class="mt-12 grid sm:grid-cols-2 gap-6">
+      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
+        <p class="relative font-display font-600 text-lg text-white">Trabajo en Equipo</p>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
+        <p class="relative font-display font-600 text-lg text-white">Adaptabilidad</p>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
+        <p class="relative font-display font-600 text-lg text-white">Comunicación Efectiva</p>
+      </div>
+      <div class="relative rounded-2xl overflow-hidden h-36 bg-navy-800 flex items-center justify-center border border-white/5">
+        <div class="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-600/10"></div>
+        <p class="relative font-display font-600 text-lg text-white">Aprendizaje Continuo</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CONTACTO / FOOTER ===================== -->
+<section id="contacto" class="py-24 border-t border-white/5 bg-navy-900/40">
+  <div class="max-w-6xl mx-auto px-6 grid md:grid-cols-2 gap-14">
+
+    <div>
+      <h2 class="font-display font-700 text-3xl text-white">Contáctame</h2>
+      <p class="mt-3 text-mist-400 max-w-sm">
+        ¿Tienes un proyecto en mente o buscas sumar a un desarrollador fullstack a tu equipo?
+        Escríbeme y te responderé lo antes posible.
+      </p>
+
+      <div class="mt-8 space-y-3 text-sm">
+        <a href="mailto:pcardenasa@unitru.edu.pe" class="flex items-center gap-3 hover:text-cyan-400 focus-ring rounded">
+          <i class="fa-solid fa-envelope text-cyan-400 w-5"></i> pcardenasa@unitru.edu.pe
+        </a>
+        <a href="tel:+51932693974" class="flex items-center gap-3 hover:text-cyan-400 focus-ring rounded">
+          <i class="fa-solid fa-phone text-cyan-400 w-5"></i> (+51) 932 693 974
+        </a>
+        <p class="flex items-center gap-3">
+          <i class="fa-solid fa-location-dot text-cyan-400 w-5"></i> La Libertad, Urb. California, Perú
+        </p>
+      </div>
+    </div>
+
+    <form id="contact-form" class="bg-navy-900 border border-white/5 rounded-2xl p-6 space-y-4">
+      <div>
+        <label for="name" class="text-xs text-mist-400">Nombre</label>
+        <input id="name" name="name" type="text" required placeholder="Tu nombre"
+               class="mt-1 w-full bg-navy-800 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-mist-500 focus:outline-none focus:border-cyan-400/60">
+      </div>
+      <div>
+        <label for="email" class="text-xs text-mist-400">Correo</label>
+        <input id="email" name="email" type="email" required placeholder="tucorreo@ejemplo.com"
+               class="mt-1 w-full bg-navy-800 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-mist-500 focus:outline-none focus:border-cyan-400/60">
+      </div>
+      <div>
+        <label for="message" class="text-xs text-mist-400">Mensaje</label>
+        <textarea id="message" name="message" rows="4" required placeholder="Cuéntame sobre tu proyecto..."
+                  class="mt-1 w-full bg-navy-800 border border-white/10 rounded-lg px-4 py-2.5 text-sm text-white placeholder:text-mist-500 focus:outline-none focus:border-cyan-400/60"></textarea>
+      </div>
+      <button type="submit" class="grad-btn w-full text-white text-sm font-medium py-3 rounded-lg focus-ring">
+        Enviar mensaje
+      </button>
+      <p id="form-status" class="text-xs text-center h-4"></p>
+    </form>
+  </div>
+
+  <div class="max-w-6xl mx-auto px-6 mt-16 pt-8 border-t border-white/5 flex flex-col sm:flex-row items-center justify-between gap-4">
+    <p class="text-xs text-mist-500">© <span id="year"></span> Piero Cárdenas. Todos los derechos reservados.</p>
+    <div class="flex items-center gap-4 text-lg">
+      <a href="https://github.com" target="_blank" rel="noopener" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="GitHub"><i class="fa-brands fa-github"></i></a>
+      <a href="https://linkedin.com" target="_blank" rel="noopener" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="LinkedIn"><i class="fa-brands fa-linkedin"></i></a>
+      <a href="mailto:pcardenasa@unitru.edu.pe" class="text-mist-400 hover:text-cyan-400 focus-ring rounded" aria-label="Correo"><i class="fa-solid fa-envelope"></i></a>
+    </div>
+  </div>
+</section>
+
+<script>
+  // Mobile menu toggle
+  const menuBtn = document.getElementById('menu-btn');
+  const navMobile = document.getElementById('nav-links-mobile');
+  menuBtn.addEventListener('click', () => {
+    const isOpen = navMobile.classList.toggle('flex');
+    navMobile.classList.toggle('hidden');
+    menuBtn.setAttribute('aria-expanded', isOpen);
+    menuBtn.innerHTML = isOpen ? '<i class="fa-solid fa-xmark"></i>' : '<i class="fa-solid fa-bars"></i>';
+  });
+  document.querySelectorAll('#nav-links-mobile a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMobile.classList.add('hidden');
+      navMobile.classList.remove('flex');
+      menuBtn.setAttribute('aria-expanded', 'false');
+      menuBtn.innerHTML = '<i class="fa-solid fa-bars"></i>';
+    });
+  });
+
+  // Footer year
+  document.getElementById('year').textContent = new Date().getFullYear();
+
+  // Contact form (visual only — no backend attached)
+  const form = document.getElementById('contact-form');
+  const status = document.getElementById('form-status');
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    status.textContent = '¡Mensaje enviado! Te responderé pronto.';
+    status.className = 'text-xs text-center h-4 text-cyan-400';
+    form.reset();
+  });
+</script>
+
+</body>
+</html>
